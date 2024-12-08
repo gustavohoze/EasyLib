@@ -6,7 +6,10 @@ use App\Http\Controllers\Admin\ProductAttributeController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProductDiscountController;
 use App\Http\Controllers\Admin\SubCategoryController;
+use App\Http\Controllers\Librarian\LibrarianMainController;
+use App\Http\Controllers\Librarian\LibrarianProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Librarian\LibrarianStoreController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -51,9 +54,25 @@ Route::middleware(['auth', 'verified', 'rolemanager:admin'])->group(function () 
     });
 });
 
-Route::get('/librarian/dashboard', function () {
-    return view('librarian');
-})->middleware(['auth', 'verified', 'rolemanager:librarian'])->name('librarian');
+// Librarian routes
+Route::middleware(['auth', 'verified', 'rolemanager:librarian'])->group(function () {
+    Route::prefix('librarian')->group(function () {
+        Route::controller(LibrarianMainController::class)->group(function () {callback:
+            Route::get('/dashboard', 'index')->name('librarian');
+            Route::get('/order/history', 'orderhistory')->name('librarian.order.history');
+
+        });
+        Route::controller(LibrarianProductController::class)->group(function () {callback:
+            Route::get('/product/create', 'index')->name('librarian.product');
+            Route::get('/product/manage', 'manage')->name('librarian.product.manage');
+        });
+        Route::controller( LibrarianStoreController::class)->group(function () {callback:
+            Route::get('/store/create', 'index')->name('librarian.store');
+            Route::get('/store/manage', 'manage')->name('librarian.store.manage');
+        });
+    });
+});
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
