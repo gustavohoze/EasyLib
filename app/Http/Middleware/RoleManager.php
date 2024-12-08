@@ -33,7 +33,7 @@ class RoleManager
                     return $next($request);
                 }
                 break;
-            case "user":
+            case "customer":
                 if ($authUserRole == 2) {
                     return $next($request);
                 }
@@ -47,7 +47,8 @@ class RoleManager
                 return redirect()->route('librarian');
 
             case 2:
-                return redirect()->route('user');
+                return redirect()->route('dashboard');
         }
+        return redirect()->route('login');
     }
 }

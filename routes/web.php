@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\ProductAttributeController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProductDiscountController;
 use App\Http\Controllers\Admin\SubCategoryController;
+use App\Http\Controllers\Customer\CustomerMainController;
 use App\Http\Controllers\Librarian\LibrarianMainController;
 use App\Http\Controllers\Librarian\LibrarianProductController;
 use App\Http\Controllers\ProfileController;
@@ -16,9 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified', 'rolemanager:customer'])->name('dashboard');
 
 //Admin Routes
 Route::middleware(['auth', 'verified', 'rolemanager:admin'])->group(function () {
@@ -69,6 +67,14 @@ Route::middleware(['auth', 'verified', 'rolemanager:librarian'])->group(function
         Route::controller( LibrarianStoreController::class)->group(function () {callback:
             Route::get('/store/create', 'index')->name('librarian.store');
             Route::get('/store/manage', 'manage')->name('librarian.store.manage');
+        });
+    });
+});
+Route::middleware(['auth', 'verified', 'rolemanager:customer'])->group(function () {
+    Route::prefix('customer')->group(function () {
+        Route::controller(CustomerMainController::class)->group(function () {callback:
+            Route::get('/dashboard', 'index')->name('dashboard');
+
         });
     });
 });
