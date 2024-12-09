@@ -14,6 +14,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Librarian\LibrarianStoreController;
 use App\Http\Controllers\MasterCategoryController;
 use Illuminate\Support\Facades\Route;
+use Livewire\Livewire;
 
 Route::get('/', function () {
     return view('welcome');
@@ -46,7 +47,12 @@ Route::middleware(['auth', 'verified', 'rolemanager:admin'])->group(function () 
         Route::controller(ProductAttributeController::class)->group(function () {
             Route::get('/productattribute/create', 'index')->name('productattribute.create');
             Route::get('/productattribute/manage', 'manage')->name('productattribute.manage');
+            Route::post('/defaultattribute/create', 'createattribute')->name('attribute.create');
+            Route::get('/defaultattribute/{id}', 'show')->name('show.attribute');
+            Route::put('/defaultattribute/update/{id}', 'update')->name('update.attribute');
+            Route::delete('/defaultattribute/delete/{id}', 'delete')->name('delete.attribute');
         });
+
         Route::controller(ProductDiscountController::class)->group(function () {
             Route::get('/discount/create', 'index')->name('discount.create');
             Route::get('/discount/manage', 'manage')->name('discount.manage');
@@ -81,6 +87,10 @@ Route::middleware(['auth', 'verified', 'rolemanager:librarian'])->group(function
         Route::controller( LibrarianStoreController::class)->group(function () {callback:
             Route::get('/store/create', 'index')->name('librarian.store');
             Route::get('/store/manage', 'manage')->name('librarian.store.manage');
+            Route::post('/store/publish', 'store')->name('create.store');
+            Route::get('/store/{id}', 'show')->name('show.store');
+            Route::put('/store/update/{id}', 'update')->name('update.store');
+            Route::delete('/store/delete/{id}', 'delete')->name('delete.store');
         });
     });
 });

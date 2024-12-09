@@ -1,6 +1,6 @@
 @extends('admin.layouts.layout')
 @section('admin_title')
-    Create Default Attribute
+    Edit Attribute
 @endsection
 @section('admin_layout')
     <div class="card-style mb-30">
@@ -18,14 +18,15 @@
                 {{session('success')}}
             </div>
         @endif
-        <form action="{{ route('attribute.create') }}" method="POST">
+        <form action="{{ route('update.attribute', $attributes->id) }}" method="POST">
             @csrf
-            <h6 class="mb-25">Create Default Attribute</h6>
+            @method('PUT')
+            <h6 class="mb-25">Edit Attribute</h6>
             <div class="input-style-1">
-                <label for="attribute_value">Name of the Default Attribute</label>
-                <input type="text" placeholder="Attribute Name" name="attribute_value">
+                <label for="attribute_value">Name of the Attribute</label>
+                <input type="text" placeholder="Full Name" name="attribute_value" value="{{$attributes->attribute_value}}">
             </div>
-            <button type="submit" class="main-btn primary-btn-light btn-hover">Add Default Attribute</button>
+            <button type="submit" class="main-btn primary-btn-light btn-hover">Edit Attribute</button>
         </form>
     </div>
 @endsection

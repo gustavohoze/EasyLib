@@ -3,5 +3,5 @@
 Create Product
 @endsection
 @section('librarian_layout')
-Create Product
+<livewire:category-subcategory/>
 @endsection

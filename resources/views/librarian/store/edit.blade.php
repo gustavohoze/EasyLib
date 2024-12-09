@@ -1,6 +1,6 @@
 @extends('librarian.layouts.layout')
 @section('librarian_title')
-    Create Store
+    Edit Store
 @endsection
 @section('librarian_layout')
     <div class="card-style mb-30">
@@ -18,22 +18,23 @@
                 {{session('success')}}
             </div>
         @endif
-        <form action="{{ route('create.store') }}" method="POST">
+        <form action="{{ route('update.store', $store_info->id) }}" method="POST">
             @csrf
-            <h6 class="mb-25">Create Store</h6>
+            @method('PUT')
+            <h6 class="mb-25">Edit Store</h6>
             <div class="input-style-1">
                 <label for="store_name">Name of the Store</label>
-                <input type="text" placeholder="Store Name" name="store_name">
+                <input type="text" value="{{$store_info->store_name}}" name="store_name">
             </div>
             <div class="input-style-1">
                 <label for="details">Description of the Store</label>
-                <textarea placeholder="Description" rows="5" name="details"></textarea>
+                <textarea rows="5" name="details">{{$store_info->details}}</textarea>
               </div>
               <div class="input-style-1">
                 <label for="slug">Slug</label>
-                <input type="text" placeholder="slug-name" name="slug">
+                <input type="text" value="{{$store_info->slug}}" name="slug">
             </div>
-            <button type="submit" class="main-btn primary-btn-light btn-hover">Add Store</button>
+            <button type="submit" class="main-btn primary-btn-light btn-hover">Update Store</button>
         </form>
     </div>
 @endsection
