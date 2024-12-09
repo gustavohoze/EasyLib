@@ -53,7 +53,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="3" class="text-center">
+                                <td colspan="5" class="text-center">
                                     <p class="text-muted">Currently, No Stores Available</p>
                                 </td>
                             </tr>

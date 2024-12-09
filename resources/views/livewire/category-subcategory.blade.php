@@ -1,9 +1,9 @@
-<div class="card-style mb-30">
+<div>
 <div class="select-style-1">
     <label for="category_id">Select A Category</label>
     <div class="select-position">
         <select name="category_id" id="category_id" wire:model.live="selectedCategory">
-            <option >Select a category</option>
+            <option value="0">Select a category</option>
             @foreach ($categories as $cat)
             <option value="{{$cat->id}}">{{$cat->category_name}}</option>
             @endforeach
@@ -21,5 +21,4 @@
         </select>
     </div>
   </div>
-
 </div>

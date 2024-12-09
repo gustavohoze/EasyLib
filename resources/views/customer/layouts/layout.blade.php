@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="{{asset('admin_asset/images/favicon.svg')}}" type="image/x-icon" />
+    <link rel="shortcut icon" href="{{ asset('admin_asset/images/logo/logo_elib.png')}}" type="image/x-icon" />
     <title>@yield('customer') - Admin Panel</title>
 
     <!-- ========== All CSS files linkup ========= -->
@@ -35,7 +35,8 @@
     <aside class="sidebar-nav-wrapper">
       <div class="navbar-logo">
         <a href="{{ route('admin') }}">
-          <img src="{{asset('admin_asset/images/logo/logo.svg')}}" alt="logo" />
+            <img src="{{ asset('admin_asset/images/logo/logo_elib.png') }}" alt="logo" width="180" height="130"/>
+
         </a>
       </div>
       <nav class="sidebar-nav">

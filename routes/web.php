@@ -83,6 +83,10 @@ Route::middleware(['auth', 'verified', 'rolemanager:librarian'])->group(function
         Route::controller(LibrarianProductController::class)->group(function () {callback:
             Route::get('/product/create', 'index')->name('librarian.product');
             Route::get('/product/manage', 'manage')->name('librarian.product.manage');
+            Route::post('/product/store', 'store')->name('librarian.product.store');
+            Route::get('/product/{id}', 'show')->name('show.product');
+            Route::put('/product/update/{id}', 'update')->name('update.product');
+            Route::delete('/product/delete/{id}', 'delete')->name('delete.product');
         });
         Route::controller( LibrarianStoreController::class)->group(function () {callback:
             Route::get('/store/create', 'index')->name('librarian.store');
