@@ -40,7 +40,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                        @foreach ($subcategories as $subcat)
+                        @forelse ($subcategories as $subcat)
                         <tr>
                             <td>
                               <p>{{$subcat->id}}</p>
@@ -53,11 +53,11 @@
                             </td>
                             <td>
                               <div class="action">
-                                <a href="{{ route('show.cat', $subcat->id) }}" class="btn btn-info me-2 text-white">
+                                <a href="{{ route('show.subcat', $subcat->id) }}" class="btn btn-info me-2 text-white">
                                     Edit
                                 </a>
                                 <button class="text-danger">
-                                    <form action="{{ route('delete.cat', $subcat->id) }}" method="POST">
+                                    <form action="{{ route('delete.subcat', $subcat->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <input type="submit" value="Delete" class="btn btn-danger">
@@ -66,7 +66,13 @@
                               </div>
                             </td>
                           </tr>
-                        @endforeach
+                          @empty
+                            <tr>
+                                <td colspan="4" class="text-center">
+                                    <p class="text-muted">Currently, No Sub Categories Available</p>
+                                </td>
+                            </tr>
+                        @endforelse
                     </tbody>
                   </table>
                 </div>

@@ -9,10 +9,10 @@ use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Customer\CustomerMainController;
 use App\Http\Controllers\Librarian\LibrarianMainController;
 use App\Http\Controllers\Librarian\LibrarianProductController;
+use App\Http\Controllers\MasterSubCategoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Librarian\LibrarianStoreController;
 use App\Http\Controllers\MasterCategoryController;
-use App\Http\Controllers\MasterSubcategoryController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -59,7 +59,9 @@ Route::middleware(['auth', 'verified', 'rolemanager:admin'])->group(function () 
         });
         Route::controller(MasterSubCategoryController::class)->group(function () {
             Route::post('/store/subcategory', 'storesubcat')->name('store.subcat');
-
+            Route::get('/subcategory/{id}', 'show')->name('show.subcat');
+            Route::put('/subcategory/update/{id}', 'update')->name('update.subcat');
+            Route::delete('/subcategory/delete/{id}', 'delete')->name('delete.subcat');
         });
     });
 });
