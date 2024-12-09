@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminMainController;
-use App\Http\Controllers\Admin\CategroyController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductAttributeController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProductDiscountController;
@@ -11,6 +11,8 @@ use App\Http\Controllers\Librarian\LibrarianMainController;
 use App\Http\Controllers\Librarian\LibrarianProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Librarian\LibrarianStoreController;
+use App\Http\Controllers\MasterCategoryController;
+use App\Http\Controllers\MasterSubcategoryController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -29,7 +31,7 @@ Route::middleware(['auth', 'verified', 'rolemanager:admin'])->group(function () 
             Route::get('/cart/history', 'cart_history')->name('admin.cart.history');
             Route::get('/order/history', 'order_history')->name('admin.order.history');
         });
-        Route::controller(CategroyController::class)->group(function () {
+        Route::controller(CategoryController::class)->group(function () {
             Route::get('/category/create', 'index')->name('category.create');
             Route::get('/category/manage', 'manage')->name('category.manage');
         });
@@ -48,6 +50,16 @@ Route::middleware(['auth', 'verified', 'rolemanager:admin'])->group(function () 
         Route::controller(ProductDiscountController::class)->group(function () {
             Route::get('/discount/create', 'index')->name('discount.create');
             Route::get('/discount/manage', 'manage')->name('discount.manage');
+        });
+        Route::controller(MasterCategoryController::class)->group(function () {
+            Route::post('/store/category', 'storecat')->name('store.cat');
+            Route::get('/category/{id}', 'show')->name('show.cat');
+            Route::put('/category/update/{id}', 'update')->name('update.cat');
+            Route::delete('/category/delete/{id}', 'delete')->name('delete.cat');
+        });
+        Route::controller(MasterSubCategoryController::class)->group(function () {
+            Route::post('/store/subcategory', 'storesubcat')->name('store.subcat');
+
         });
     });
 });
@@ -74,6 +86,8 @@ Route::middleware(['auth', 'verified', 'rolemanager:customer'])->group(function 
     Route::prefix('customer')->group(function () {
         Route::controller(CustomerMainController::class)->group(function () {callback:
             Route::get('/dashboard', 'index')->name('dashboard');
+            Route::get('/history', 'history')->name('history');
+            Route::get('/payment', 'payment')->name('payment');
 
         });
     });

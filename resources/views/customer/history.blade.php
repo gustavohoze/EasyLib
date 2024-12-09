@@ -1,7 +1,7 @@
 @extends('customer.layouts.layout')
 @section('customer_title')
-Dashboard
+History
 @endsection
 @section('customer_layout')
-Dashboard
+History
 @endsection

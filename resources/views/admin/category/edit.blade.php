@@ -1,6 +1,6 @@
 @extends('admin.layouts.layout')
 @section('admin_title')
-    Create Category
+    Edit Category
 @endsection
 @section('admin_layout')
     <div class="card-style mb-30">
@@ -18,14 +18,15 @@
                 {{session('success')}}
             </div>
         @endif
-        <form action="{{ route('store.cat') }}" method="POST">
+        <form action="{{ route('update.cat', $category_info->id) }}" method="POST">
             @csrf
-            <h6 class="mb-25">Create Category</h6>
+            @method('PUT')
+            <h6 class="mb-25">Edit Category</h6>
             <div class="input-style-1">
-                <label for="category_name">Name of the Category</label>
-                <input type="text" placeholder="Category Name" name="category_name">
+                <label>Name of the Category</label>
+                <input type="text" placeholder="Full Name" name="category_name" value="{{$category_info->category_name}}">
             </div>
-            <button type="submit" class="main-btn primary-btn-light btn-hover">Add Category</button>
+            <button type="submit" class="main-btn primary-btn-light btn-hover">Edit Category</button>
         </form>
     </div>
 @endsection
