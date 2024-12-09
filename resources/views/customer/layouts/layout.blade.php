@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="{{ asset('admin_asset/images/logo/logo_elib.png')}}" type="image/x-icon" />
-    <title>@yield('customer') - Admin Panel</title>
+    <title>@yield('customer_title')</title>
 
     <!-- ========== All CSS files linkup ========= -->
     <link rel="stylesheet" href="{{ asset('admin_asset/css/bootstrap.min.css') }}" />
@@ -149,33 +149,12 @@
           <!-- ========== title-wrapper start ========== -->
           <div class="title-wrapper pt-30">
             <div class="row align-items-center">
-              <div class="col-md-6">
-                <div class="title">
-                  <h2>@yield('customer_title')</h2>
+              <div class="col-md-12">
+                <div class="title text-center ">
+                  <h1 style="color: #84C4E8;">@yield('customer_title')</h1>
                 </div>
               </div>
-              <!-- end col -->
-              {{-- <div class="col-md-6">
-                <div class="breadcrumb-wrapper">
-                  <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                      <li class="breadcrumb-item">
-                        <a href="#0">Dashboard</a>
-                      </li>
-                      <li class="breadcrumb-item active" aria-current="page">
-                        Page
-                      </li>
-                    </ol>
-                  </nav>
-                </div>
-              </div> --}}
-              <!-- end col -->
-            </div>
-            <!-- end row -->
-          </div>
-          <!-- ========== title-wrapper end ========== -->
-
-          @yield('customer_layout')
+              @yield('customer_layout')
         </div>
         <!-- end container -->
       </section>
